@@ -1,7 +1,11 @@
-[project]
-name = "python-template"
-version = "0.1.0"
-description = ""
-authors = ["Your Name <you@example.com>"]
-requires-python = ">=3.11"
-dependencies = []
+[build-system]
+requires = ["setuptools>=57.0.0", "wheel>=0.36.0", "setuptools_scm[toml]>=6.0.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+# Exclude tests and example scripts from the installation package
+exclude-packages = ["tests", "examples"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+exclude = ["tests", "examples"]
