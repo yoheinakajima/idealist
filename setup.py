@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="infinite_idealist",
-    version="0.1.1",
+    version="0.1.2",
     author="Yohei Nakajima",
     author_email="yohei@example.com",
     description="A flexible Python library for generating and refining creative ideas using LLMs and embeddings.",
