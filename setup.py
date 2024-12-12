@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="idealist",
+    name="infinite_idealist",
     version="0.1.0",
     author="Yohei Nakajima",
     author_email="yohei@example.com",  # Replace with your email

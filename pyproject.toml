@@ -1,11 +1,28 @@
 [build-system]
-requires = ["setuptools>=57.0.0", "wheel>=0.36.0", "setuptools_scm[toml]>=6.0.0"]
+requires = ["setuptools", "wheel", "build"]
 build-backend = "setuptools.build_meta"
 
-[tool.setuptools]
-# Exclude tests and example scripts from the installation package
-exclude-packages = ["tests", "examples"]
+[project]
+name = "infinite_idealist"
+version = "0.1.0"
+description = "A flexible Python library for generating and refining creative ideas using LLMs and embeddings."
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Yohei Nakajima", email = "yohei@example.com"}
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "litellm>=0.2.0",
+    "pydantic>=1.8.2",
+    "scikit-learn>=0.24.2",
+    "numpy>=1.21.0",
+]
+requires-python = ">=3.7"
 
 [tool.setuptools.packages.find]
 where = ["."]
-exclude = ["tests", "examples"]
