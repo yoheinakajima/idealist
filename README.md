@@ -31,6 +31,7 @@ import os
 def main():
     # Set up environment variables for API keys (optional, depending on the model used)
     os.environ["OPENAI_API_KEY"] = "your_openai_api_key"
+    # os.environ["ANTHROPIC_API_KEY"] = "your_anthropic_api_key"  # Optional if using Anthropic
 
     # Initialize the IdeaGenerator
     generator = IdeaGenerator(
@@ -39,6 +40,7 @@ def main():
         model="gpt-4o-mini",  # Specify the LLM model
         embedding_model="text-embedding-ada-002",  # Specify the embedding model
         openai_api_key=os.getenv("OPENAI_API_KEY"),  # Optional if using OpenAI
+        anthropic_api_key=os.getenv("ANTHROPIC_API_KEY"),  # Optional if using Anthropic
         max_recent_ideas=15,  # Number of recent ideas to include in prompts
         debug=False  # Set to True for detailed logs
     )
@@ -73,14 +75,16 @@ import os
 def main():
     # Set up environment variables for API keys (optional, depending on the model used)
     os.environ["OPENAI_API_KEY"] = "your_openai_api_key"
+    # os.environ["ANTHROPIC_API_KEY"] = "your_anthropic_api_key"  # Optional if using Anthropic
 
     # Load an existing IdeaGenerator by ID
     generator_id = "pokemon_names_20241212_050458"  # Replace with your generator ID
     generator = IdeaGenerator.load(
         generator_id=generator_id,
-        model="gpt-4o-mini",  # Specify the LLM model
-        embedding_model="text-embedding-ada-002",  # Specify the embedding model
+        model="gpt-4o-mini",  # Specify the LLM model used during creation
+        embedding_model="text-embedding-ada-002",  # Specify the embedding model used during creation
         openai_api_key=os.getenv("OPENAI_API_KEY"),  # Optional if using OpenAI
+        anthropic_api_key=os.getenv("ANTHROPIC_API_KEY"),  # Optional if using Anthropic
         max_recent_ideas=15,  # Number of recent ideas to include in prompts
         debug=False  # Set to True for detailed logs
     )
@@ -126,6 +130,29 @@ IdeaGenerator(
 - **max_recent_ideas**: Maximum number of recent ideas to include in prompts.
 - **debug**: Enables detailed logging if set to `True`.
 - **generator_id**: Optional ID to load an existing generator.
+
+#### `load` Class Method
+
+~~~python
+@classmethod
+load(
+    generator_id: str,
+    model: str = "gpt-4o-mini",
+    embedding_model: str = "text-embedding-ada-002",
+    anthropic_api_key: Optional[str] = None,
+    openai_api_key: Optional[str] = None,
+    max_recent_ideas: int = 20,
+    debug: bool = False
+) -> 'IdeaGenerator'
+~~~
+
+- **generator_id**: ID of the generator to load.
+- **model**: The LLM model to use (must match the one used during creation).
+- **embedding_model**: The embedding model to use (must match the one used during creation).
+- **anthropic_api_key**: API key for Anthropic (optional).
+- **openai_api_key**: API key for OpenAI (optional).
+- **max_recent_ideas**: Maximum number of recent ideas to include in prompts.
+- **debug**: Enables detailed logging if set to `True`.
 
 #### `setup_parameters`
 
