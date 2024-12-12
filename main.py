@@ -1,26 +1,19 @@
-# main.py
 from idea_generator import IdeaGenerator
 import os
 import json
 
 def create_new_generator(max_recent_ideas: int = 20):
     """Create a new birthday party ideas generator."""
-    # Retrieve API keys from environment variables
-    anthropic_api_key = os.getenv("ANTHROPIC_API_KEY")
+    # Retrieve API keys from environment variables (optional)
     openai_api_key = os.getenv("OPENAI_API_KEY")
 
-    # Validate that the API keys are available
-    if not anthropic_api_key:
-        raise ValueError("ANTHROPIC_API_KEY is not set in the environment variables.")
-    if not openai_api_key:
-        raise ValueError("OPENAI_API_KEY is not set in the environment variables.")
-
-    # Initialize the IdeaGenerator with both API keys and dynamic max_recent_ideas
+    # Initialize the IdeaGenerator with dynamic settings
     generator = IdeaGenerator(
         name="Pokemon Names",
         description="Generate unique and creative names for Pokemon characters",
-        anthropic_api_key=anthropic_api_key,
-        openai_api_key=openai_api_key,  # Pass the OpenAI API key here
+        model="gpt-4o-mini",  # Specify the LLM model
+        embedding_model="text-embedding-ada-002",  # Specify the embedding model
+        openai_api_key=openai_api_key,  # Optional OpenAI API key
         max_recent_ideas=max_recent_ideas,  # Set max_recent_ideas
         debug=False  # Disable debug output for minimal logging
     )
@@ -35,20 +28,14 @@ def create_new_generator(max_recent_ideas: int = 20):
 
 def load_existing_generator(generator_id: str, max_recent_ideas: int = 20):
     """Load an existing generator by ID."""
-    # Retrieve API keys from environment variables
-    anthropic_api_key = os.getenv("ANTHROPIC_API_KEY")
+    # Retrieve API keys from environment variables (optional)
     openai_api_key = os.getenv("OPENAI_API_KEY")
-
-    # Validate that the API keys are available
-    if not anthropic_api_key:
-        raise ValueError("ANTHROPIC_API_KEY is not set in the environment variables.")
-    if not openai_api_key:
-        raise ValueError("OPENAI_API_KEY is not set in the environment variables.")
 
     return IdeaGenerator.load(
         generator_id=generator_id,
-        anthropic_api_key=anthropic_api_key,
-        openai_api_key=openai_api_key,  # Pass the OpenAI API key
+        model="gpt-4o-mini",  # Specify the LLM model
+        embedding_model="text-embedding-ada-002",  # Specify the embedding model
+        openai_api_key=openai_api_key,  # Optional OpenAI API key
         max_recent_ideas=max_recent_ideas,  # Pass max_recent_ideas
         debug=False
     )

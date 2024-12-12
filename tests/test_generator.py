@@ -1,5 +1,3 @@
-# tests/test_generator.py
-
 import unittest
 import os
 from idea_generator import IdeaGenerator
@@ -7,15 +5,15 @@ from idea_generator import IdeaGenerator
 class TestIdeaGenerator(unittest.TestCase):
 
     def setUp(self):
-        # Set up environment variables for testing
-        os.environ["ANTHROPIC_API_KEY"] = "test_anthropic_api_key"
+        # Set up environment variables for testing (optional)
         os.environ["OPENAI_API_KEY"] = "test_openai_api_key"
 
         # Initialize IdeaGenerator with test parameters
         self.generator = IdeaGenerator(
             name="Test Generator",
             description="Test Description",
-            anthropic_api_key="test_anthropic_api_key",
+            model="gpt-4o-mini",
+            embedding_model="text-embedding-ada-002",
             openai_api_key="test_openai_api_key",
             max_recent_ideas=5,
             debug=True
@@ -28,9 +26,6 @@ class TestIdeaGenerator(unittest.TestCase):
         self.generator.setup_parameters(parameters)
 
     def test_generate_idea(self):
-        # Mock the completion and embedding functions if possible
-        # For simplicity, we'll skip mocking here
-
         # Generate an idea
         idea = self.generator.generate_idea()
 
